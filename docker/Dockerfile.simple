@@ -1,0 +1,18 @@
+FROM rockylinux:9.2 AS build
+
+RUN yum -y update && yum -y install golang
+
+WORKDIR /workdir
+
+COPY src ./
+
+ENV CGO_ENABLED=0
+RUN go build 
+
+FROM rockylinux:9.2 AS runtime
+COPY --from=build /workdir/ /opt/workdir/
+RUN pwd
+RUN chmod 755 /opt/workdir/rcg-go
+WORKDIR /opt/workdir
+EXPOSE 8080
+ENTRYPOINT ["/opt/workdir/rcg-go"]

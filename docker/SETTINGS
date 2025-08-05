@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Image settings
+DOCKER_BASE_IMAGE="rockylinux:9.3"
+IMAGENAME="rcs-go"
+IMGVERS1="0.0.1"
+IMGVERS2="latest"   #(latest/beta)
+
+# Registry settings
+LIBRARY="mygo"
+
